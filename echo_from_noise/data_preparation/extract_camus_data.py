@@ -37,8 +37,9 @@ def save_all_camus_imgs(in_data_folder, save_folder, img_save_size, selected_vie
         __, patient_name = os.path.split(patient_folder)
         patient_idx = int(patient_name.split('patient')[-1])
 
-        patient_img_file_name = patient_name + '_' + selected_view_name + '.mhd'
-        patient_gt_file_name = patient_name + '_' + selected_view_name + '_gt.mhd'
+
+        patient_img_file_name = patient_name + '_' + selected_view_name + '.nii'
+        patient_gt_file_name = patient_name + '_' + selected_view_name + '_gt.nii'
 
         loaded_img = load_mhd_img(os.path.join(patient_folder, patient_img_file_name), img_out_size=img_save_size)
         loaded_gt_img = load_mhd_img(os.path.join(patient_folder, patient_gt_file_name), img_out_size=img_save_size)
@@ -64,14 +65,14 @@ def save_all_camus_imgs(in_data_folder, save_folder, img_save_size, selected_vie
         cv2.imwrite(annotations_save_path, loaded_gt_img)
         cv2.imwrite(all_views_img_save_path, loaded_img)
         cv2.imwrite(all_views_annotations_save_path, loaded_gt_img)
-
-    print('Done with {} patients for view {} {}'.format(idx + 1, selected_view_name, save_train_test_type))
+        
+        print('Done with {} patients for view {} {}'.format(idx + 1, selected_view_name, save_train_test_type))
 
 
 if __name__ == '__main__':
 
-    camus_data_folder = r'/path/to/camus/data'
-    save_folder_path = r'/path/to/save/folder'
+    camus_data_folder = r'CAMUS_public'
+    save_folder_path = r'CAMUS_extracted'
     save_img_size = (256, 256)
 
     view_names = ['2CH_ED', '2CH_ES', '4CH_ED', '4CH_ES']

@@ -355,6 +355,7 @@ def main():
     deepspeed.init_distributed()
 
     dist_util.setup_dist()
+
     logger.configure(save_dir=cfg.DATASETS.SAVEDIR)
 
     logger.log("creating model and diffusion...")

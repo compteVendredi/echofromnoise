@@ -17,9 +17,9 @@ def move_test_files_to_folder(data_folder_in, view_name_in, save_folder_testing)
 
 if __name__ == '__main__':
 
-    testing_data_folder = r'/path/to/camus/images'
-    sdm_results_folder = r'/path/to/sdm/results'
-    save_folder = r'/path/to/save/folder'
+    testing_data_folder = r'../../CAMUS_public'
+    sdm_results_folder = r'../../SDM_generated_data/all_frames_combined/images'
+    save_folder = r'../../save_folder'
 
     samples_folder = os.path.join(sdm_results_folder, 'samples')
     labels_folder = os.path.join(sdm_results_folder, 'labels')
@@ -48,4 +48,4 @@ if __name__ == '__main__':
         label_file_path = pathlib.Path(str(inf_image_path).replace('samples', "labels"))
         shutil.copy2(label_file_path, save_label_path)
 
-    move_test_files_to_folder(testing_data_folder, view_name, save_folder)
+        move_test_files_to_folder(testing_data_folder, view_name, save_folder)

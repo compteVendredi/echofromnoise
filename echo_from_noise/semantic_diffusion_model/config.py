@@ -8,8 +8,8 @@ cfg = __C
 #
 
 __C.DATASETS = edict()
-__C.DATASETS.DATADIR = '/path/to/dataset'
-__C.DATASETS.SAVEDIR = '/path/to/save'
+__C.DATASETS.DATADIR = 'path/to/dataset'
+__C.DATASETS.SAVEDIR = 'save'
 __C.DATASETS.DATASET_MODE = 'camus'
 
 __C.TRAIN = edict()
@@ -47,7 +47,7 @@ __C.TRAIN.EMA_RATE = "0.9999"
 __C.TRAIN.DROP_RATE = 0.0
 __C.TRAIN.LOG_INTERVAL = 10
 __C.TRAIN.SAVE_INTERVAL = 2000
-__C.TRAIN.RESUME_CHECKPOINT = "/path/to/checkpoint"  # optional, if you want to resume training from a checkpoint
+__C.TRAIN.RESUME_CHECKPOINT = ""  # optional, if you want to resume training from a checkpoint
 __C.TRAIN.USE_FP16 = True
 __C.TRAIN.DISTRIBUTED_DATA_PARALLEL = True
 __C.TRAIN.USE_NEW_ATTENTION_ORDER = True

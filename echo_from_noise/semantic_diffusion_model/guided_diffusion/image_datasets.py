@@ -40,6 +40,7 @@ def load_data(cfg):
     elif cfg.DATASETS.DATASET_MODE == 'camus':
         if cfg.TEST.INFERENCE_ON_TRAIN and not cfg.TRAIN.IS_TRAIN:  # inference on train in one go to make synthetic image generation easier
             all_files = glob.glob(os.path.join(cfg.DATASETS.DATADIR, 'images', 'training', '*.png'))
+            print()
             all_files = all_files + glob.glob(os.path.join(cfg.DATASETS.DATADIR, 'images', 'validation', '*.png'))
             classes = glob.glob(os.path.join(cfg.DATASETS.DATADIR, 'sector_annotations', 'training', '*.png'))
             classes = classes + glob.glob(
