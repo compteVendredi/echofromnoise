@@ -4,7 +4,7 @@ Reprise (et modifications) du dépôt echo from noise : https://github.com/david
 
 # Installation 
 
-Sous linux avec conda installé :
+Sous linux avec conda d'installé :
 ```
 conda create --name echofromnoise
 conda activate echofromnoise
