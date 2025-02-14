@@ -17,7 +17,9 @@ conda install -c conda-forge mpi4py~=3.1.4 openmpi
 # Préparation des données
 
 Téléchargez le dossier sur ce lien ("download collection") : https://humanheart-project.creatis.insa-lyon.fr/database/#collection/6373703d73e9f0047faa1bc8/folder/6373727d73e9f0047faa1bca
+
 Dézippez-le et mettez-le à la racine du dépôt.
+
 Exécutez le script prepare_camus_public qui va permettre de déplacer les dossiers patients en fonction de leur appartenance aux données test ou training.
 ```
 python prepare_camus_public.py
