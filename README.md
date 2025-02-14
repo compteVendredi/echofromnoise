@@ -4,7 +4,9 @@ Reprise (et modifications) du dépôt echo from noise : https://github.com/david
 
 # Installation 
 
-Sous linux avec conda d'installé et une carte graphique compatible CUDA :
+D'abord téléchargez le dépôt et dézippez-le.
+
+Ensuite placez-vous à la racine du dépôt et effectuez ses commandes sous linux avec conda d'installé et une carte graphique compatible CUDA :
 ```
 conda create --name echofromnoise
 conda activate echofromnoise
