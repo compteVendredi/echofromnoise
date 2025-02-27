@@ -1,6 +1,6 @@
 # echofromnoise
 
-Reprise (et modifications) du dépôt echo from noise : https://github.com/david-stojanovski/echo_from_noise
+Reprise du dépôt echo from noise (https://github.com/david-stojanovski/echo_from_noise) pour reproduire certains résultats et modifications pour l'essayer sur des données ultrasonores.
 
 # Installation 
 
@@ -10,7 +10,7 @@ Ensuite placez-vous à la racine du dépôt et effectuez ses commandes sous linu
 ```
 conda create --name echofromnoise
 conda activate echofromnoise
-conda install pip python=3.11
+conda install pip python=3.10
 python -m pip install -r echo_from_noise/requirements.txt
 conda install opencv
 conda install -c conda-forge mpi4py~=3.1.4 openmpi
@@ -53,3 +53,27 @@ Placez les dans un dossier "checkpoint" à la racine du dépôt.
 ```
 python echo_from_noise/semantic_diffusion_model/image_sample.py --datadir CAMUS_augmented/2CH_ED_augmented --resume_checkpoint checkpoint/ema_0.9999_050000_2ch_ed_256.pt --results_dir ./results_2CH_ED --num_samples 2250 --is_train False --inference_on_train True
 ```
+
+À défaut de pouvoir les inférer, les télécharger sur : https://zenodo.org/records/7921055#.ZFyqd9LMLmE
+
+Extraire le .zip et placer son contenu (SDM_generated_data) à la racine du projet.
+
+Remarque pas besoin d'exécuter le script prepare4segmentation les données sont déjà dans le bon format.
+
+
+# Entraînement du modèle de segmentation
+
+```
+python echo_from_noise/echo_segmentations/runner.py --data-dir SDM_generated_data/all_frames_combined --num-classes=4 --output-dir output_allframes --num-workers 12
+```
+Adaptez le paramètre num_workers en fonction de votre ordinateur.
+
+
+# Test du modèle de segmentation
+
+```
+python echo_from_noise/echo_segmentations/test_model.py --data-dir SDM_generated_data/all_frames_combined --num-classes=4 --output-dir output_test_allframes --num-workers 12 --model-path output_allframes/model.pth
+```
+Adaptez le paramètre num_workers en fonction de votre ordinateur.
+
+
