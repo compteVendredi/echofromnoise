@@ -65,6 +65,10 @@ Remarque pas besoin d'exécuter le script prepare4segmentation les données sont
 
 ```
 python echo_from_noise/echo_segmentations/runner.py --data-dir SDM_generated_data/all_frames_combined --num-classes=4 --output-dir output_allframes --num-workers 12
+python echo_from_noise/echo_segmentations/runner.py --data-dir SDM_generated_data/2_chamber_end_diastole --num-classes=4 --output-dir output_2_chamber_end_diastole --num-workers 12
+python echo_from_noise/echo_segmentations/runner.py --data-dir SDM_generated_data/4_chamber_end_diastole --num-classes=4 --output-dir output_4_chamber_end_diastole --num-workers 12
+python echo_from_noise/echo_segmentations/runner.py --data-dir SDM_generated_data/2_chamber_end_systole --num-classes=4 --output-dir output_2_chamber_end_systole --num-workers 12
+python echo_from_noise/echo_segmentations/runner.py --data-dir SDM_generated_data/4_chamber_end_systole --num-classes=4 --output-dir output_4_chamber_end_systole --num-workers 12
 ```
 Adaptez le paramètre num_workers en fonction de votre ordinateur.
 
@@ -73,6 +77,10 @@ Adaptez le paramètre num_workers en fonction de votre ordinateur.
 
 ```
 python echo_from_noise/echo_segmentations/test_model.py --data-dir SDM_generated_data/all_frames_combined --num-classes=4 --output-dir output_test_allframes --num-workers 12 --model-path output_allframes/model.pth
+python echo_from_noise/echo_segmentations/test_model.py --data-dir SDM_generated_data/2_chamber_end_diastole --num-classes=4 --output-dir output_test_2_chamber_end_diastole --num-workers 12 --model-path output_2_chamber_end_diastole/model.pth
+python echo_from_noise/echo_segmentations/test_model.py --data-dir SDM_generated_data/4_chamber_end_diastole --num-classes=4 --output-dir output_test_4_chamber_end_diastole --num-workers 12 --model-path output_4_chamber_end_diastole/model.pth
+python echo_from_noise/echo_segmentations/test_model.py --data-dir SDM_generated_data/2_chamber_end_systole --num-classes=4 --output-dir output_test_2_chamber_end_systole --num-workers 12 --model-path output_2_chamber_end_systole/model.pth
+python echo_from_noise/echo_segmentations/test_model.py --data-dir SDM_generated_data/4_chamber_end_systole --num-classes=4 --output-dir output_test_4_chamber_end_systole --num-workers 12 --model-path output_4_chamber_end_systole/model.pth
 ```
 Adaptez le paramètre num_workers en fonction de votre ordinateur.
 
