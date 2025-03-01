@@ -73,7 +73,7 @@ python echo_from_noise/echo_segmentations/runner.py --data-dir SDM_generated_dat
 Adaptez le paramètre num_workers en fonction de votre ordinateur.
 
 
-# Test du modèle de segmentation
+# Test du modèle de segmentation avec les poids entraînés
 
 ```
 python echo_from_noise/echo_segmentations/test_model.py --data-dir SDM_generated_data/all_frames_combined --num-classes=4 --output-dir output_test_allframes --num-workers 12 --model-path output_allframes/model.pth
@@ -84,4 +84,18 @@ python echo_from_noise/echo_segmentations/test_model.py --data-dir SDM_generated
 ```
 Adaptez le paramètre num_workers en fonction de votre ordinateur.
 
+
+# Test du modèle de segmentation avec les poids de l'article
+
+Téléchargez les poids du modèle de l'article ici : https://zenodo.org/records/7921055#.ZFyqd9LMLmE
+Mettez final_models.zip à la racine du projet et dézippez-le.
+
+```
+python echo_from_noise/echo_segmentations/test_model.py --data-dir SDM_generated_data/all_frames_combined --num-classes=4 --output-dir output_test_original_allframes --num-workers 12 --model-path final_models/output_all_views/model.pth
+python echo_from_noise/echo_segmentations/test_model.py --data-dir SDM_generated_data/2_chamber_end_diastole --num-classes=4 --output-dir output_test_original_2_chamber_end_diastole --num-workers 12 --model-path final_models/output_2CH_ED/model.pth
+python echo_from_noise/echo_segmentations/test_model.py --data-dir SDM_generated_data/4_chamber_end_diastole --num-classes=4 --output-dir output_test_original_4_chamber_end_diastole --num-workers 12 --model-path final_models/output_4CH_ED/model.pth
+python echo_from_noise/echo_segmentations/test_model.py --data-dir SDM_generated_data/2_chamber_end_systole --num-classes=4 --output-dir output_test_original_2_chamber_end_systole --num-workers 12 --model-path final_models/output_2CH_ES/model.pth
+python echo_from_noise/echo_segmentations/test_model.py --data-dir SDM_generated_data/4_chamber_end_systole --num-classes=4 --output-dir output_test_original_4_chamber_end_systole --num-workers 12 --model-path final_models/output_4CH_ES/model.pth
+```
+Adaptez le paramètre num_workers en fonction de votre ordinateur.
 
