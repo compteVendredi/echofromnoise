@@ -11,8 +11,18 @@ class DiffusionDataset(Dataset):
 
     def __init__(self, image_dir, img_transform=None, label_transform=None, device=torch.device('cpu')):
         self.image_dir = image_dir
-        self.image_path = os.listdir(self.image_dir % "images")
-        self.label_path = os.listdir(self.image_dir % "annotations")
+        self.fix_path = ""
+        if "training" in self.image_dir:
+            self.fix_path = "training"
+            self.image_dir = self.image_dir.replace("training", "")
+        elif  "validation" in self.image_dir:
+            self.fix_path = "validation"
+            self.image_dir = self.image_dir.replace("validation", "")
+        else:
+            self.fix_path = "testing"
+            self.image_dir = self.image_dir.replace("testing", "")
+        self.image_path = os.listdir(os.path.join(self.image_dir, "images", self.fix_path))
+        self.label_path = os.listdir(os.path.join(self.image_dir, "annotations", self.fix_path))
         self.img_transform = img_transform
         self.label_transform = label_transform
         self.device = device
@@ -21,14 +31,14 @@ class DiffusionDataset(Dataset):
         return len(self.image_path)
 
     def __getitem__(self, index):
-        image_fp = os.path.join(self.image_dir % 'images', self.image_path[index])
+        image_fp = os.path.join(os.path.join(self.image_dir, 'images', self.fix_path), self.image_path[index])
 
         out_img = Image.open(image_fp).convert('L')
         out_img = out_img.resize((256, 256), Image.NEAREST)
         out_img = np.array(out_img)
         out_img = np.expand_dims(out_img, axis=-1)
         # transpose out_img preserving dimensions
-        label_fp = os.path.join(self.image_dir % 'annotations', self.image_path[index])
+        label_fp = os.path.join(os.path.join(self.image_dir, 'annotations', self.fix_path), self.image_path[index])
         label = Image.open(label_fp).convert('L')
         label = label.resize((256, 256), Image.NEAREST)
         label = np.array(label)

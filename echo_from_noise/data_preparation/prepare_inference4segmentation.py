@@ -16,14 +16,13 @@ def move_test_files_to_folder(data_folder_in, view_name_in, save_folder_testing)
 
 
 if __name__ == '__main__':
-
-    testing_data_folder = r'../../CAMUS_public'
-    sdm_results_folder = r'../../SDM_generated_data/all_frames_combined/images'
-    save_folder = r'../../save_folder'
+    testing_data_folder = r'CAMUS_augmented/2CH_ED_augmented'
+    sdm_results_folder = r'results_2CH_ED'
+    save_folder = r'save_prepared_data_2CH_ED'
 
     samples_folder = os.path.join(sdm_results_folder, 'samples')
     labels_folder = os.path.join(sdm_results_folder, 'labels')
-
+    print(samples_folder)
     all_inferenced_images = glob.glob(os.path.join(samples_folder, '*.png'))
     print('Found {} inferenced images'.format(len(all_inferenced_images)))
 

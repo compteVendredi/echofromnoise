@@ -108,8 +108,8 @@ def main(args):
         model = torch.compile(model)
 
     state_dict = torch.load(args.load_model_path)
-    # remove_prefix = '_orig_mod.'
-    # state_dict = {k[len(remove_prefix):] if k.startswith(remove_prefix) else k: v for k, v in state_dict.items()}
+    remove_prefix = '_orig_mod.'
+    state_dict = {k[len(remove_prefix):] if k.startswith(remove_prefix) else k: v for k, v in state_dict.items()}
     model.load_state_dict(state_dict)
 
     criterion = torch.nn.CrossEntropyLoss()
