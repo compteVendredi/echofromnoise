@@ -10,6 +10,7 @@ from torch.utils.data import DataLoader
 import utils.data_transforms as data_transforms
 from utils.datasets import DiffusionDataset
 from utils.epoch_cycle import run_cycle
+from utils.test_visualize import visualize_test_inference
 
 
 def get_args_from_command_line():
@@ -125,7 +126,7 @@ def main(args):
            test_log['dice_std_lv_endo'],
            test_log['dice_std_lv_epi'],
            test_log['dice_std_atrium']))
-
+    visualize_test_inference(model, test_data_loader, args.batch_size, num_classes, device)
 
 if __name__ == '__main__':
     # sys.argv = sys.argv + ['--model-path', '/path/to/model.pth']
