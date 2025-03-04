@@ -99,3 +99,66 @@ python echo_from_noise/echo_segmentations/test_model.py --data-dir SDM_generated
 ```
 Adaptez le paramètre num_workers en fonction de votre ordinateur.
 
+
+# Images US
+
+
+Pour les images ultrasonores dézippez le dossier à la racine du projet puis :
+```
+python prepare_us_data.py
+```
+Après pour augmenter les données US faites :
+```
+python echo_from_noise/semantic_diffusion_model/image_sample.py --datadir prepared_US_data --resume_checkpoint checkpoint/ema_0.9999_050000_2ch_ed_256.pt --results_dir ./results_US_SDM --num_samples 10 --is_train False --inference_on_train True
+```
+De là récupérer dans le output_US_data des échantillons pour constituer le dossier prepared2_US_data qui contient les données augmentées pour les dossiers validation et training (!!!! et n'oubliez pas de faire un -1 avec clipping sur les images labels obtenues par SDM !!!!), par exemple :
+```
+.
+├── annotations
+│   ├── testing
+│   │   └── 0_2.png
+│   ├── training
+│   │   ├── 0_1.png
+│   │   ├── 0_3.png
+│   │   ├── 1_1.png
+│   │   ├── 2_1.png
+│   │   ├── 2_3.png
+│   │   ├── 4_1.png
+│   │   └── 4_3.png
+│   └── validation
+│       ├── 1_3.png
+│       ├── 3_1.png
+│       └── 3_3.png
+└── images
+    ├── testing
+    │   └── 0_2.png
+    ├── training
+    │   ├── 0_1.png
+    │   ├── 0_3.png
+    │   ├── 1_1.png
+    │   ├── 2_1.png
+    │   ├── 2_3.png
+    │   ├── 4_1.png
+    │   └── 4_3.png
+    └── validation
+        ├── 1_3.png
+        ├── 3_1.png
+        └── 3_3.png
+
+```
+
+
+Pour entraîner le réseau sur les données augmentées faites :
+```
+python echo_from_noise/echo_segmentations/runner.py --data-dir prepared2_US_data --num-classes=4 --output-dir output_US_data --num-workers 12
+```
+Pour tester le réseau entraîné sur les données faites :
+```
+python echo_from_noise/echo_segmentations/test_model.py --data-dir prepared2_US_data --num-classes=4 --output-dir output_test_US --num-workers 12 --model-path output_US_data/model.pth
+```
+
+Pour tester le réseau sans le nouvel entraînement faites :
+
+```
+python echo_from_noise/echo_segmentations/test_model.py --data-dir prepared2_US_data --num-classes=4 --output-dir output_test_US --num-workers 12 --model-path final_models/output_all_views/model.pth
+```
