@@ -162,3 +162,10 @@ Pour tester le réseau sans le nouvel entraînement faites :
 ```
 python echo_from_noise/echo_segmentations/test_model.py --data-dir prepared2_US_data --num-classes=4 --output-dir output_test_US --num-workers 12 --model-path final_models/output_all_views/model.pth
 ```
+
+Pour entraîner puis tester le réseau avec ancien + nouvel entraînement :
+
+```
+python echo_from_noise/echo_segmentations/runner.py --data-dir prepared2_US_data --num-classes=4 --output-dir output_US_data_pretrained --num-workers 12 --model-path final_models/output_all_views/model.pth
+python echo_from_noise/echo_segmentations/test_model.py --data-dir prepared2_US_data --num-classes=4 --output-dir output_test_US_pretrained --num-workers 12 --model-path output_US_data_pretrained/model.pth
+```
